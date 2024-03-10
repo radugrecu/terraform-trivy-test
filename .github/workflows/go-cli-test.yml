@@ -17,7 +17,7 @@ jobs:
       with:
         scan-type: 'config'
         hide-progress: false
-        format: 'sarif'
+        format: 'json'
         output: 'trivy-results.json'
         #exit-code: '1'
         #ignore-unfixed: true
