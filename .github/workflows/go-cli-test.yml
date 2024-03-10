@@ -3,7 +3,7 @@ name: Go CLI Test
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   test:
