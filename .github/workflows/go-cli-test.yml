@@ -12,11 +12,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # create a file in the working directory
-    - name: Create a file
-      run: echo "Hello, World!" > yoooohooooo.txt
+    - name: Run Trivy vulnerability scanner in IaC mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'config'
+        hide-progress: false
+        format: 'sarif'
+        output: 'trivy-results.json'
+        #exit-code: '1'
+        #ignore-unfixed: true
+        severity: 'CRITICAL,HIGH'
 
     - name: Run Go CLI Test
       uses: radugrecu/go-cli-test@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        report_file: trivy-results.json
