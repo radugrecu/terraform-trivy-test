@@ -23,6 +23,13 @@ jobs:
         #ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
 
+    - name: 'Upload Artifact: trivy scan results'
+      uses: actions/upload-artifact@v4
+      with:
+        name: trivy-scan-results
+        path: trivy-results.json
+        retention-days: 5
+
     - name: Run Go CLI Test
       uses: radugrecu/go-cli-test@master
       with:
